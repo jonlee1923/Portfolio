@@ -1,103 +1,40 @@
-"use client"
 
-import Image from "next/image";
-import Link from "next/link";
+import { getProfile } from "@/sanity/sanity.query";
+import type { ProfileType } from "@/types";
 
-export default function Home() {
+export default async function Home() {
+  const profile: ProfileType[] = await getProfile();
+  console.log(profile)
   return (
-    <main className="w-screen h-screen relative">
-      <div
-        className="flex items-center w-full h-full bg-cover bg-center"
-        style={{ backgroundImage: "url(/main-bg.webp)" }}
-      >
-        <div className="pl-20 md:pl-40 pb-56 md:pb-20 flex flex-col gap-5 z-[10] max-w-[750px]">
-          <h1 className="text-[50px] text-white font-semibold">
-            Make anything possible with
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-red-500">
-              {" "}
-              Web Development
-            </span>
-          </h1>
-          <p className="text-gray-200 hidden md:block">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-          <div className="flex-col md:flex-row hidden md:flex gap-5">
-            <Link
-              href="/my-skills"
-              className="rounded-[20px] group relative bg-blue-500 hover:bg-blue-400 px-5 py-3 text-lg text-white max-w-[200px]"
-            >
-              Learn more
-            </Link>
-            <Link
-              href="/my-projects"
-              className="rounded-[20px] group relative bg-trasparent px-5 border border-white py-3 text-lg text-white max-w-[200px]"
-            >
-              <div className="absolute rounded-[20px] z-[1] bg-white inset-0 opacity-0 group-hver:opacity-20" />
-              My projects
-            </Link>
-            <Link
-              href="/contact-me"
-              className="rounded-[20px] group relative bg-trasparent border border-white px-5 py-3 text-lg text-white max-w-[200px]"
-            >
-              <div className="absolute rounded-[20px] z-[1] bg-white inset-0 opacity-0 group-hver:opacity-20" />
-              Contact me
-            </Link>
-          </div>
-        </div>
-      </div>
-
-      <div className="absolute flex bottom-10 z-[20] right-5 flex-col md:hidden gap-5">
-        <Link
-          href="/my-skills"
-          className="rounded-[20px] group bg-blue-500 px-5 py-3 text-lg text-white max-w-[200px]"
-        >
-          Learn more
-        </Link>
-
-        <Link
-          href="/my-projects"
-          className="rounded-[20px] group bg-trasparent border border-white px-5 py-3 text-lg text-white max-w-[200px]"
-        >
-          My projects
-        </Link>
-        <Link
-          href="/contact-me"
-          className="rounded-[20px] group bg-trasparent border border-white px-5 py-3 text-lg text-white max-w-[200px]"
-        >
-          Contact me
-        </Link>
-      </div>
-
-      <div className="absolute bottom-0 right-0 z-[10]">
-        <Image
-          src="/horse.png"
-          alt="horse"
-          height={300}
-          width={300}
-          className="absolute right-55 top-40"
-        />
-
-        <Image src="/cliff.webp" alt="cliff" width={480} height={480} />
-      </div>
-
-      <div className="absolute bottom-0 z-[5] w-full h-auto">
-        <Image
-          src="/trees.webp"
-          alt="trees"
-          width={2000}
-          height={2000}
-          className="w-full h-full"
-        />
-      </div>
-
-      <Image
-        src="/stars.png"
-        alt="stars"
-        height={300}
-        width={300}
-        className="absolute top-0 left-0 z-[10]"
-      />
+    <main className="max-w-7xl mx-auto lg:px-16 px-6">
+      <section className="flex xl:flex-row flex-col xl:items-center items-start xl:justify-center justify-between gap-x-12 lg:mt-32 mt-20 mb-16">
+        {profile &&
+          profile.map((data) => (
+            <div key={data._id} className="lg:max-w-2xl max-w-2xl">
+              <h1 className="text-3xl font-bold tracking-tight sm:text-5xl mb-6 lg:leading-[3.7rem] leading-tight lg:min-w-[700px] min-w-full">
+                {data.fullName}
+              </h1>
+              <p className="text-base text-zinc-400 leading-relaxed">
+                {data.shortBio}
+              </p>
+              <ul className="flex items-center gap-x-6 my-10">
+                {Object.entries(data.socialLinks)
+                  .sort()
+                  .map(([key, value], id) => (
+                    <li key={id}>
+                      <a
+                        href={value}
+                        rel="noreferer noopener"
+                        className="flex items-center gap-x-3 mb-5 hover:text-purple-400 duration-300"
+                      >
+                        {key[0].toUpperCase() + key.toLowerCase().slice(1)}
+                      </a>
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          ))}
+      </section>
     </main>
   );
 }

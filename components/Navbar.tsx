@@ -1,42 +1,35 @@
-import { Socials } from "@/constants";
 import Image from "next/image";
-import React from "react";
+import Link from "next/link";
+import Logo from "../icons/PortfolioLogo.png";
 
-const Navbar = () => {
+export default function Navbar() {
   return (
-    <div className="fixed top-0 z-[40] w-full h-[100px] bg-transparent flex justify-between items-center px-10 md:px-20">
-      <div className="flex flex-row gap-3 items-center">
-        <div className="relative">
-          {/* <Image
-            src="/horseLogo.jpg"
-            alt="logo"
-            width={40}
-            height={40}
-            className="w-full h-full object-contain rounded-full"
-          /> */}
-        </div>
-        <h1 className="text-white text-[25px] font-semibold">
-          Webchain{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-red-500">
-            {" "}
-            Dev{" "}
-          </span>
-        </h1>
+    <header className="py-6 md:px-16 px-6 border-b border-zinc-800 z-30 md:mb-28 mb-20">
+      <div className="max-w-6xl mx-auto flex items-center justify-between">
+        <Link href="/">
+          <Image src={Logo} width={100} height={100} alt="logo" />
+        </Link>
+        <nav>
+          <ul className="flex items-center gap-x-8">
+            <li>
+              <Link
+                href="/about"
+                className="hover:text-purple-400 duration-300"
+              >
+                About
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/projects"
+                className="hover:text-purple-400 duration-300"
+              >
+                Projects
+              </Link>
+            </li>
+          </ul>
+        </nav>
       </div>
-
-      <div className="flex flex-row gap-5 mb-2">
-        {Socials.map((social) => (
-          <Image
-            key={social.name}
-            src={social.src}
-            alt={social.name}
-            width={28}
-            height={28}
-          />
-        ))}
-      </div>
-    </div>
+    </header>
   );
-};
-
-export default Navbar;
+}

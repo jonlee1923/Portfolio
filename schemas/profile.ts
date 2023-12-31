@@ -1,5 +1,5 @@
 import { defineField } from "sanity";
-import { BiUser } from "react-icons/bi"
+import { BiUser } from "react-icons/bi";
 
 // name key is referenced by groq
 // title is used in studio UI
@@ -18,11 +18,18 @@ const profile = {
         }),
 
         defineField({
-            name: "bio",
-            title: "Bio",
+            name: "shortBio",
+            title: "Short Bio",
             type: "string",
             description: "In one sentence, what do you do?",
             validation: (Rule) => Rule.required().min(40).max(80),
+        }),
+
+        defineField({
+            name: "longBio",
+            title: "Long Bio",
+            type: "string",
+            description: "Tell me about yourself",
         }),
 
         {
@@ -35,9 +42,9 @@ const profile = {
                 {
                     name: "alt",
                     title: "Alt",
-                    type: "string"
-                }
-            ]
+                    type: "string",
+                },
+            ],
         },
         {
             name: "email",
@@ -47,7 +54,7 @@ const profile = {
         {
             name: "resumeURL",
             title: "Upload Resume",
-            type: "file"
+            type: "file",
         },
         {
             name: "socialLinks",
@@ -66,13 +73,13 @@ const profile = {
                     title: "Linkedin URL",
                     type: "url",
                     initialValue: "https://linkedin.com/in/",
-                }
+                },
             ],
             options: {
                 collapsed: false,
                 collapsible: true,
                 columns: 2,
-            }
+            },
         },
         {
             name: "skills",
@@ -80,8 +87,7 @@ const profile = {
             type: "array",
             description: "Add a list of skills",
             of: [{ type: "string" }],
-        }
-
+        },
     ],
 };
 
