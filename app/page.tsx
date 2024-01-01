@@ -1,4 +1,5 @@
 
+import Job from "@/components/Job";
 import { getProfile } from "@/sanity/sanity.query";
 import type { ProfileType } from "@/types";
 
@@ -35,6 +36,7 @@ export default async function Home() {
             </div>
           ))}
       </section>
+      <Job/>
     </main>
   );
 }

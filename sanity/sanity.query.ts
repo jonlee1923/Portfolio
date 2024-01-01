@@ -22,3 +22,17 @@ export async function getProfile(){
         }`
     )
 }
+
+export async function getJob(){
+    return client.fetch(
+        groq`*[_type == "job"]{
+            _id,
+            name,
+            jobTitle,
+            "logo": logo.asset->url,
+            description,
+            startDate,
+            endDate
+        }`
+    )
+}
