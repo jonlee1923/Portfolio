@@ -6,6 +6,8 @@ export async function getProfile(){
     //* is for every document in the dataset
     // [] brackets is the filter
     // {} brackets define the content needed from the dataset
+
+    //WARNING: the syntax for the groq query is very strict. Got a error with this when there was no space between : and resumeURL 
     return client.fetch(
         groq`*[_type == "profile"]{
             _id,
@@ -14,7 +16,7 @@ export async function getProfile(){
             longBio,
             profileImage {alt, "image": asset->url},
             email,
-            "resumeURL":resumeURL.asset -> url,
+            "resumeURL": resumeURL.asset -> url,
             socialLinks,
             skills
         }`

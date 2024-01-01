@@ -28,7 +28,8 @@ const profile = {
         defineField({
             name: "longBio",
             title: "Long Bio",
-            type: "string",
+            type: "array",
+            of: [{ type: "block" }],
             description: "Tell me about yourself",
         }),
 
