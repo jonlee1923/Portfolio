@@ -36,3 +36,15 @@ export async function getJob(){
         }`
     )
 }
+
+export async function getProject() {
+    return client.fetch(
+        groq`*[_type == "project"]{
+            _id,
+            name,
+            "coverImage": coverImage.asset->url,
+            description,
+            projectUrl
+        }`
+    )
+}

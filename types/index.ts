@@ -24,3 +24,14 @@ export type JobType = {
     startDate: Date;
     endDate: Date;
 };
+
+export type ProjectType = {
+    _id: string;
+    name: string;
+    projectUrl: string;
+    coverImage: {
+        alt: string;
+        image: string;
+    };
+    description: PortableTextBlock;
+};
