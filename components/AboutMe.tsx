@@ -1,10 +1,11 @@
+import React from 'react'
 import Image from "next/image";
 import { getProfile } from "@/sanity/sanity.query";
 import type { ProfileType } from "@/types";
 import { PortableText } from "@portabletext/react";
 import { BiEnvelope, BiFile } from "react-icons/bi";
 
-export default async function About() {
+const AboutMe = async () => {
     const profile: ProfileType[] = await getProfile();
     console.log(profile[0]);
     return (
@@ -54,11 +55,8 @@ export default async function About() {
                         </section>
 
                         <section className="mt-24 max-w-2xl">
-                            <h2 className="font-semibold text-4xl mb-4">
-                                Expertise
-                            </h2>
                             <p className="text-zinc-400 max-w-lg">
-                                Some of my favourite tools and languages I enjoy using are
+                                Some of the favourite tools and languages I enjoy using are
                             </p>
 
                             <ul className="flex flex-wrap items-center gap-3 mt-8">
@@ -88,3 +86,5 @@ export default async function About() {
         </main>
     );
 }
+
+export default AboutMe

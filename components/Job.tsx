@@ -37,14 +37,15 @@ export default async function Job() {
                                 {data.startDate.toString()} to{" "}
                                 {data.endDate.toString()}
                             </small>
-                            <ul className="space-y-1">
+                            <PortableText value={data.description}/>
+                            {/* <ul className="space-y-1">
                                 {data.description
                                     .toString()
                                     .split("\n")
                                     .map((point, index) => (
                                         <li key={index}>{point}</li>
                                     ))}
-                            </ul>
+                            </ul> */}
                         </div>
                     </div>
                 ))}
