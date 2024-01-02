@@ -6,7 +6,7 @@ import { BiEnvelope, BiFile } from "react-icons/bi";
 
 export default async function About() {
     const profile: ProfileType[] = await getProfile();
-    console.log(profile[0].longBio[0].children);
+    console.log(profile[0]);
     return (
         <main className="lg:max-w-7xl mx-auto max-w-3xl md:px-16 px-6">
             {profile &&
@@ -63,12 +63,23 @@ export default async function About() {
                             </p>
 
                             <ul className="flex flex-wrap items-center gap-3 mt-8">
-                                {data.skills.map((skill, id) => (
+                                {data.frameworks.map((framework, id) => (
                                     <li
                                         key={id}
                                         className="bg-white border border-transparent hover:border-zinc-700 rounded-md px-2 py-1"
                                     >
-                                        {skill}
+                                        {framework}
+                                    </li>
+                                ))}
+                            </ul>
+
+                            <ul className="flex flex-wrap items-center gap-3 mt-8">
+                                {data.languages.map((language, id) => (
+                                    <li
+                                        key={id}
+                                        className="bg-white border border-transparent hover:border-zinc-700 rounded-md px-2 py-1"
+                                    >
+                                        {language}
                                     </li>
                                 ))}
                             </ul>
