@@ -1,5 +1,6 @@
 import AboutMe from "@/components/AboutMe";
-import Job from "@/components/Job";
+import Jobs from "@/components/Jobs";
+import Projects from "@/components/Projects";
 import { getProfile } from "@/sanity/sanity.query";
 import type { ProfileType } from "@/types";
 
@@ -37,7 +38,9 @@ export default async function Home() {
 
             <AboutMe />
 
-            <Job />
+            <Jobs />
+
+            <Projects/>
         </main>
     );
 }
