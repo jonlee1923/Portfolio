@@ -26,10 +26,9 @@ const job = {
         {
             name: "description",
             title: "Job Description",
-            type: "text",
-            rows: 5,
-            description:
-                "Write a description of your role & achievements in the company",
+            type: "array",
+            description:"Write a description of your role & achievements in the company",
+            of: [{ type: "block" }],
         },
         {
             name: "startDate",

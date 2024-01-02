@@ -20,7 +20,7 @@ export type JobType = {
     name: string;
     jobTitle: string;
     logo: string;
-    description: string;
+    description: PortableTextBlock[];
     startDate: Date;
     endDate: Date;
 };
@@ -33,5 +33,5 @@ export type ProjectType = {
         alt: string;
         image: string;
     };
-    description: PortableTextBlock;
+    description: PortableTextBlock[];
 };

@@ -1,10 +1,10 @@
 import Image from "next/image";
 import { getJob } from "@/sanity/sanity.query";
 import type { JobType } from "@/types";
+import { PortableText } from "@portabletext/react";
 
 export default async function Job() {
     const job: JobType[] = await getJob();
-
     return (
         <section className="mt-32">
             <div className="mb-16">
@@ -15,7 +15,7 @@ export default async function Job() {
                 {job.map((data) => (
                     <div
                         key={data._id}
-                        className="flex items-start lg:gap-x-6 gap-x-4 max-w-2xl relative before:absolute before:bottom-0 before:top-[4.5rem] before:left-7 before:w-[1px] before:h-[calc(100%-50px)] before:bg-zinc-800"
+                        className="flex items-start lg:gap-x-6 gap-x-4 max-w-5xl relative before:absolute before:bottom-0 before:top-[4.5rem] before:left-7 before:w-[1px] before:h-[calc(100%-50px)] before:bg-zinc-800"
                     >
                         <a
                             href={data.logo}
@@ -29,16 +29,21 @@ export default async function Job() {
                                 fill
                             />
                         </a>
-                        <div className="flex flex-col items-start">
+                        <div className="flex flex-col items-start space-y-2">
                             <h3 className="text-xl font-bold">{data.name}</h3>
                             <p>{data.jobTitle}</p>
                             <small className="text-sm text-zinc-500 mt-2 tracking-widest uppercase">
-                                {data.startDate.toString()} -{" "}
+                                {data.startDate.toString()} to{" "}
                                 {data.endDate.toString()}
                             </small>
-                            <p className="text-base text-zinc-400 my-4">
-                                {data.description}
-                            </p>
+                            <ul className="space-y-1">
+                                {data.description
+                                    .toString()
+                                    .split("\n")
+                                    .map((point, index) => (
+                                        <li key={index}>{point}</li>
+                                    ))}
+                            </ul>
                         </div>
                     </div>
                 ))}
