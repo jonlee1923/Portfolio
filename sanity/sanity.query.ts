@@ -49,3 +49,17 @@ export async function getProject() {
         }`
     )
 }
+
+export async function getPosts(){
+    return client.fetch(
+        groq`*[_type=="blogpost"]{
+            _id,
+            title,
+            publishDate,
+            "coverImage": coverImage.asset->url,
+            post,
+            tags,
+            summary
+        }`
+    )
+}

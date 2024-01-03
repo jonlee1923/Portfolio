@@ -5,7 +5,6 @@ import { PortableText } from "@portabletext/react";
 
 export default async function Jobs() {
     const job: JobType[] = await getJob();
-    console.log(job)
     return (
         <section className="mt-32">
             <div className="mb-16">

@@ -1,5 +1,9 @@
 import { PortableTextBlock } from "sanity";
-
+type SocialLinks = {
+    github: string;
+    linkedin: string;
+  };
+  
 export type ProfileType = {
     _id: string;
     fullName: string;
@@ -11,7 +15,7 @@ export type ProfileType = {
     };
     email: string;
     resumeURL: string;
-    socialLinks: string[];
+    socialLinks: SocialLinks;
     frameworks: string[];
     languages: string[];
 };
@@ -36,3 +40,17 @@ export type ProjectType = {
     };
     description: PortableTextBlock[];
 };
+
+
+export type BlogPostType = {
+    _id: string;
+    title: string;
+    publishDate: Date;
+    coverImage:{
+        alt: string;
+        image: string;
+    };
+    post: PortableTextBlock[];
+    tags: string[];
+    summary: string;
+}

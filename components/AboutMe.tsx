@@ -7,7 +7,6 @@ import { BiEnvelope, BiFile } from "react-icons/bi";
 
 const AboutMe = async () => {
     const profile: ProfileType[] = await getProfile();
-    console.log(profile[0]);
     return (
         <main className="lg:max-w-7xl mx-auto max-w-3xl md:px-16 px-6">
             {profile &&
