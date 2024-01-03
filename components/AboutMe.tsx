@@ -8,7 +8,7 @@ import { BiEnvelope, BiFile } from "react-icons/bi";
 const AboutMe = async () => {
     const profile: ProfileType[] = await getProfile();
     return (
-        <main className="lg:max-w-7xl mx-auto max-w-3xl md:px-16 px-6">
+        <main className="mx-auto max-w-3xl px-6 pt-32">
             {profile &&
                 profile.map((data) => (
                     <div key={data._id}>
@@ -53,12 +53,12 @@ const AboutMe = async () => {
                             </div>
                         </section>
 
-                        <section className="mt-24 max-w-2xl">
-                            <p className="text-zinc-400 max-w-lg">
+                        <section className="flex-col mt-24">
+                            <p className="flex justify-center text-zinc-400">
                                 Some of the favourite tools and languages I enjoy using are
                             </p>
 
-                            <ul className="flex flex-wrap items-center gap-3 mt-8">
+                            <ul className="flex justify-center flex-wrap items-center gap-3 mt-8">
                                 {data.frameworks.map((framework, id) => (
                                     <li
                                         key={id}
@@ -69,7 +69,7 @@ const AboutMe = async () => {
                                 ))}
                             </ul>
 
-                            <ul className="flex flex-wrap items-center gap-3 mt-8">
+                            <ul className="flex justify-center flex-wrap items-center gap-3 mt-8">
                                 {data.languages.map((language, id) => (
                                     <li
                                         key={id}

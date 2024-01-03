@@ -8,10 +8,10 @@ export default async function Project() {
     const projects: ProjectType[] = await getProject();
     return (
         <section className="mt-32">
-            <div className="mb-16">
+            <div className="flex justify-center mb-16">
                 <h2 className="font-semibold text-4xl mb-4">Projects</h2>
             </div>
-            <section className="grid grid-cols-1 gap-5 mb-12">
+            <section className="flex justify-center gap-5 pb-12">
                 {projects.map((project) => (
                     <div key={project._id}>
                         <Image
