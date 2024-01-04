@@ -28,9 +28,7 @@ export default async function Home() {
             </section>
             <section className="bg-gradient-to-r from-blue-300 to-pink-100">
                 <AboutMe />
-
                 <Jobs />
-
                 <Projects />
             </section>
         </main>

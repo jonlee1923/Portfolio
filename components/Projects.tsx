@@ -28,7 +28,6 @@ export default async function Project() {
                         </div>
                         <PortableText value={project.description} />
                     </div>
-                    //   </Link>
                 ))}
             </section>
         </section>

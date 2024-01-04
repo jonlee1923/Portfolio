@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import Image from "next/image";
 import { getProfile } from "@/sanity/sanity.query";
 import type { ProfileType } from "@/types";
@@ -14,13 +14,13 @@ const AboutMe = async () => {
                     <div key={data._id}>
                         <section className="grid lg:grid-cols-2 grid-cols-1 gap-x-6 justify-items-center">
                             <div className="order-2 lg:order-none">
-                                <div className="flex flex-col gap-y-3 text-zinc-400 leading-relaxed">
-                                    <PortableText value={data.longBio}/>
+                                <div className="flex flex-col gap-y-3 leading-relaxed text-slate-500 text-xl">
+                                    <PortableText value={data.longBio} />
                                 </div>
                             </div>
 
-                            <div className="flex flex-col lg:justify-self-center justify-self-start gap-y-8 lg:order-1 order-none mb-12">
-                                <div>
+                            <div className="flex flex-col lg:justify-self-center justify-self-start gap-y-4 lg:order-1 order-none mb-12">
+                                
                                     <Image
                                         className="rounded-2xl mb-4 object-cover max-h-100 min-h-100 bg-top bg-[#1d1d20]"
                                         src={data.profileImage.image}
@@ -37,25 +37,21 @@ const AboutMe = async () => {
                                         <BiFile className="text-base" />{" "}
                                         Download Resumé
                                     </a>
-                                </div>
-
-                                <ul>
-                                    <li>
-                                        <a
-                                            href={`mailto:${data.email}`}
-                                            className="flex items-center gap-x-2 hover:text-purple-400 duration-300"
-                                        >
-                                            <BiEnvelope className="text-lg" />
-                                            {data.email}
-                                        </a>
-                                    </li>
-                                </ul>
+                                    <a
+                                        href={`mailto:${data.email}`}
+                                        className="flex items-center justify-center gap-x-2 bg-white border border-transparent hover:border-zinc-700 rounded-md duration-200 py-2 text-center cursor-cell font-medium"
+                                    >
+                                        <BiEnvelope className="text-lg" />
+                                        {data.email}
+                                    </a>
+                            
                             </div>
                         </section>
 
                         <section className="flex-col mt-24">
-                            <p className="flex justify-center text-zinc-400">
-                                Some of the favourite tools and languages I enjoy using are
+                            <p className="flex justify-center text-slate-500 text-xl">
+                                Some of the favourite tools and languages I
+                                enjoy using are
                             </p>
 
                             <ul className="flex justify-center flex-wrap items-center gap-3 mt-8">
@@ -84,6 +80,6 @@ const AboutMe = async () => {
                 ))}
         </main>
     );
-}
+};
 
-export default AboutMe
+export default AboutMe;
