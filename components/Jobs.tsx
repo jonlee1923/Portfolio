@@ -13,7 +13,7 @@ export default async function Jobs() {
                 </h2>
             </div>
             <div className="flex justify-center">
-                <div className="flex-col w-5/6">
+                <div className="flex-col w-2/3">
                     {job.map((data) => (
                         <JobExperience
                             key={data._id}

@@ -7,22 +7,35 @@ interface PostDetails {
     title: string;
     date: Date;
     summary: string;
+    tags: string[];
 }
 
 const BlogPostCard = (postDetails: PostDetails) => {
     return (
-        <article className="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-            <div className="flex justify-between items-center mb-5 text-gray-500">
-                <span className="text-xs font-medium inline-flex items-center gap-x-1 py-0.5 rounded">
-                    <MdOutlineArticle />
+        <article className="p-6 bg-white rounded-lg border border-gray-200 shadow-md">
+            <div className="flex justify-between items-center text-gray-500">
+                <span className="inline-flex items-center gap-x-1 py-0.5 rounded">
+                    <MdOutlineArticle className="text-xl" />
                     Article
                 </span>
-                {/* <span className="text-sm">14 days ago</span> */}
+                <p>Published {postDetails.date.toString()}</p>
             </div>
-            <h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <div>
+                <ul className="flex items-start flex-wrap items-center gap-3 py-2">
+                    {postDetails.tags.map((tag, id) => (
+                        <li
+                            key={id}
+                            className="text-sm bg-slate-200 rounded-md px-2 py-1"
+                        >
+                            {tag}
+                        </li>
+                    ))}
+                </ul>
+            </div>
+            <h2 className="mt-6 mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 <a href="#">{postDetails.title}</a>
             </h2>
-            <p className="mb-5 font-light text-gray-500 dark:text-gray-400">
+            <p className=" font-light text-gray-500 dark:text-gray-400">
                 {postDetails.summary}
             </p>
             <div className="flex justify-between items-center">
@@ -31,7 +44,7 @@ const BlogPostCard = (postDetails: PostDetails) => {
                     className="inline-flex items-center font-medium hover:underline gap-x-1"
                 >
                     Read more
-                    <FaArrowRight/>
+                    <FaArrowRight />
                 </a>
             </div>
         </article>
