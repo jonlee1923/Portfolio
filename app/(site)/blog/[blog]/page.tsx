@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import { getSinglePost } from "@/sanity/sanity.query";
 import type { BlogPostType } from "@/types";
 import { PortableText } from "@portabletext/react";
+import BlogFooter from "@/components/blog/BlogFooter";
 
 type Props = {
     params: {
@@ -27,39 +28,45 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function Project({ params }: Props) {
-    console.log("checking" + params);
     const slug = params.blog;
     const post: BlogPostType = await getSinglePost(slug);
-    console.log(post.coverImage);
     return (
-        <main className="max-w-6xl mx-auto lg:px-16 px-8">
-            <div className="max-w-3xl mx-auto">
-                <div className="flex items-start justify-between mb-4">
-                    <h1 className="font-bold lg:text-5xl text-3xl lg:leading-tight mb-4">
-                        {post.title}
-                    </h1>
+        <main>
+            <section className=" mx-auto px-8 bg-slate-900 text-white">
+                <div className="max-w-3xl mx-auto">
+                    <div className="flex items-start justify-between">
+                        <h1 className="font-bold text-3xl lg:leading-tight mt-8 mb-4">
+                            {post.title}
+                        </h1>
+                    </div>
+                    <p className="text-xs mb-4">
+                        Published {post.publishDate.toString()}
+                    </p>
 
-                    {/* <a
-            href={post.projectUrl}
-            rel="noreferrer noopener"
-            className="bg-[#1d1d20] text-white hover:border-zinc-700 border border-transparent rounded-md px-4 py-2"
-          >
-            Explore
-          </a> */}
+                    <Image
+                        className="rounded-xl border border-zinc-800"
+                        width={900}
+                        height={460}
+                        src={post.coverImage.image}
+                        alt={post.coverImage?.alt || post.title}
+                    />
+
+                    <div className="flex flex-col gap-y-6 mt-8 leading-7">
+                        <PortableText value={post.post} />
+                    </div>
+                    <ul className="flex items-start flex-wrap items-center gap-3 py-6">
+                        {post.tags.map((tag, id) => (
+                            <li
+                                key={id}
+                                className="text-sm text-white bg-slate-700 rounded-md px-2 py-1"
+                            >
+                                {tag}
+                            </li>
+                        ))}
+                    </ul>
                 </div>
-
-                <Image
-                    className="rounded-xl border border-zinc-800"
-                    width={900}
-                    height={460}
-                    src={post.coverImage.image}
-                    alt={post.coverImage?.alt || post.title}
-                />
-
-                <div className="flex flex-col gap-y-6 mt-8 leading-7 text-zinc-400">
-                    <PortableText value={post.post} />
-                </div>
-            </div>
+            </section>
+            <BlogFooter />
         </main>
     );
 }
