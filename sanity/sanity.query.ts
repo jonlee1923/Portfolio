@@ -1,13 +1,12 @@
-import {groq} from 'next-sanity';
+import { groq } from "next-sanity";
 import client from "./sanity.client";
 
-export async function getProfile(){
-
+export async function getProfile() {
     //* is for every document in the dataset
     // [] brackets is the filter
     // {} brackets define the content needed from the dataset
 
-    //WARNING: the syntax for the groq query is very strict. Got a error with this when there was no space between : and resumeURL 
+    //WARNING: the syntax for the groq query is very strict. Got a error with this when there was no space between : and resumeURL
     return client.fetch(
         groq`*[_type == "profile"]{
             _id,
@@ -21,10 +20,10 @@ export async function getProfile(){
             frameworks,
             languages
         }`
-    )
+    );
 }
 
-export async function getJob(){
+export async function getJob() {
     return client.fetch(
         groq`*[_type == "job"]{
             _id,
@@ -35,7 +34,7 @@ export async function getJob(){
             startDate,
             endDate
         }`
-    )
+    );
 }
 
 export async function getProject() {
@@ -47,19 +46,35 @@ export async function getProject() {
             description,
             projectUrl
         }`
-    )
+    );
 }
 
-export async function getPosts(){
+export async function getPosts() {
     return client.fetch(
         groq`*[_type=="blogpost"]{
             _id,
             title,
             publishDate,
-            "coverImage": coverImage.asset->url,
+            coverImage {alt, "image": asset->url},
+            summary,
+            "slug": slug.current,
             post,
             tags,
-            summary
         }`
-    )
+    );
+}
+
+export async function getSinglePost(slug: string) {
+    return client.fetch(
+        groq`*[_type == "blogpost" && slug.current == $slug][0]{
+            _id,
+            title,
+            publishDate,
+            coverImage {alt, "image": asset->url},
+            summary,
+            post,
+            tags
+      }`,
+        { slug }
+    );
 }

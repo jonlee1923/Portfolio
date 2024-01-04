@@ -8,6 +8,7 @@ interface PostDetails {
     date: Date;
     summary: string;
     tags: string[];
+    slug: string;
 }
 
 const BlogPostCard = (postDetails: PostDetails) => {
@@ -40,7 +41,7 @@ const BlogPostCard = (postDetails: PostDetails) => {
             </p>
             <div className="flex justify-between items-center">
                 <a
-                    href="#"
+                    href={`/blog/${postDetails.slug}`}
                     className="inline-flex items-center font-medium hover:underline gap-x-1"
                 >
                     Read more

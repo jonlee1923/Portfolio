@@ -1,4 +1,5 @@
 import { MdOutlinePostAdd } from "react-icons/md";
+import { defineField } from "sanity";
 
 const blogPost = {
     name: "blogpost",
@@ -29,18 +30,27 @@ const blogPost = {
             description: "Write your post",
             of: [{ type: "block" }],
         },
+        defineField({
+            name: "slug",
+            title: "Slug",
+            type: "slug",
+            description:
+                "Add a custom slug for the URL or generate one from the name",
+            options: { source: "name" },
+            validation: (rule) => rule.required(),
+        }),
+        {
+            name: "summary",
+            title: "Summary",
+            type: "string",
+            description: "In one sentence sumamrise this blog post",
+        },
         {
             name: "tags",
             title: "Tags",
             type: "array",
             description: "List of relevant tags related to this blog post",
             of: [{ type: "string" }],
-        },
-        {
-            name: "summary",
-            title: "Summary",
-            type: "string",
-            description: "In one sentence sumamrise this blog post",
         },
     ],
 };

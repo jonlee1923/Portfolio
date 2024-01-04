@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import BlogPostCard from "@/components/blog/BlogPostCard";
 import { getPosts } from "@/sanity/sanity.query";
 import { BlogPostType } from "@/types";
@@ -5,7 +6,7 @@ import React from "react";
 
 export default async function Blog() {
     const posts: BlogPostType[] = await getPosts();
-
+    console.log(posts)
     return (
         <main className="flex-col px-6 min-h-screen bg-gradient-to-r from-blue-300 to-pink-100">
             <div className="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8 pt-8">
@@ -25,10 +26,13 @@ export default async function Blog() {
                             date={post.publishDate}
                             summary={post.summary}
                             tags={post.tags}
+                            // slug={post.slug}
+                            slug="lessons-learnt-at-gic"
                         />
                     ))}
                 </div>
             </div>
         </main>
+
     );
 }

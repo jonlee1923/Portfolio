@@ -50,7 +50,8 @@ export type BlogPostType = {
         alt: string;
         image: string;
     };
+    summary: string;
+    slug: string;
     post: PortableTextBlock[];
     tags: string[];
-    summary: string;
 }
