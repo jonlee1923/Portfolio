@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { getProject } from "@/sanity/sanity.query";
 import type { ProjectType } from "@/types";
 import { PortableText } from "@portabletext/react";

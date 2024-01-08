@@ -45,7 +45,7 @@ const JobExperience = (data: JobDetails) => {
                         </small>
 
                         {isDropDownOpen && (
-                            <ul className="marker:text-black-400 list-disc pl-5 space-y-3 text-stone-900">
+                            <ul className="marker:text-black-400 list-disc pl-5 space-y-3 text-slate-800">
                                 {data.description.map((block, index) => (
                                     <li key={index}>
                                         <PortableText value={block} />

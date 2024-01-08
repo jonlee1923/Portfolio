@@ -6,7 +6,6 @@ import React from "react";
 
 export default async function Blog() {
     const posts: BlogPostType[] = await getPosts();
-    console.log(posts);
     return (
         <main >
             <section className="flex-col px-6 min-h-screen bg-slate-900">

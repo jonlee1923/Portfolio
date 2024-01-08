@@ -1,6 +1,6 @@
 export default function Footer() {
     return (
-        <footer className="bg-gradient-to-r from-blue-300 to-pink-100">
+        <footer>
             <div className="w-5/6 mx-auto flex justify-end gap-y-4 px-6 py-16 text-slate-500">
                 <small className="duration-200 text-xl">
                     Prepared by{" "}
