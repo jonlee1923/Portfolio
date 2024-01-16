@@ -42,7 +42,7 @@ export async function getProject() {
         groq`*[_type == "project"]{
             _id,
             name,
-            "coverImage": coverImage.asset->url,
+            coverImage {alt, "image": asset->url},
             description,
             projectUrl
         }`
